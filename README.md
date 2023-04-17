@@ -21,4 +21,5 @@ epic.start();
 - Block F strings (in favour of `String.format`)
 - Replacement of common Python methods to seem more "Java-y"
 - Replacement of common Python literals to be more like **EVERY OTHER LANGUAGE**
+- A *"much better"* printing system (just try it, it's not that bad 😇)
 - Removal of any sanity the developer may have had before using this! (yes, that's a feature)
