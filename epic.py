@@ -184,7 +184,7 @@ class FileChecker:
 		for i, line in enumerate(self.content):
 			if 'import' not in line:
 				continue
-			if 'from BetterPython import *' in line:
+			if 'from epic import *' in line:
 				continue
 			if 'as' in line or 'from' in line:
 				self.throw(i, message="'import ... as' or 'from ...' statements are not allowed")
