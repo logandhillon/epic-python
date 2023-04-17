@@ -1,3 +1,9 @@
+#
+# Copyright (c) LDM 2023. All rights reserved. THE SOFTWARE IS PROVIDED "AS IS", 
+# WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. YOU MAY NOT COPY OR REDISTRIBUTE
+# THIS CODE WITHOUT PREMISSION FROM LDM. DO NOT REDISTRIBUTE!
+#
+
 true = True;
 false = False;
 null = None
@@ -46,8 +52,7 @@ class StringUtils:
 		return targetString;
 	@staticmethod
 	def removeEscapeCodes(s: str) -> str:
-		import re
-		return re.sub(r'\x1B\[[0-?]*[ -/]*[@-~]', '', s)
+		return python.util.RegEx.sub(r'\x1B\[[0-?]*[ -/]*[@-~]', '', s)
 
 class System:
 	import sys
@@ -166,7 +171,7 @@ class FileChecker:
 			if i == 0 and line != "from epic import *;":
 				self.throw(i, message=f"first line must be 'from epic import *;'")
 
-			if i == 1 and line != "epic.start();":
+			if i == 1 and line != "epic.	start();":
 				self.throw(i, message=f"second line must call 'epic.start();'")
 
 	def checkFStrings(self):
@@ -189,6 +194,8 @@ class FileChecker:
 				self.throw(i, type="ImportError", message="invalid import 'sys' (did you mean System.sys?)")
 			if "import datetime" in line:
 				self.throw(i, type="ImportError", message="'datetime' is already imported (python.util.DateTime)")
+			if "import re" in line:
+				self.throw(i, type="ImportError", message="'re' is already imported (python.util.RegEx)")
 			
 	def blockIllegalMethods(self):
 		for i, line in enumerate(self.content):
