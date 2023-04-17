@@ -163,11 +163,11 @@ class FileChecker:
 			if not line.strip():
 				continue;
 
-			if i == 0 and line != "from BetterPython import *;":
-				self.throw(i, message=f"first line must be 'from BetterPython import *;'")
+			if i == 0 and line != "from epic import *;":
+				self.throw(i, message=f"first line must be 'from epic import *;'")
 
-			if i == 1 and line != "start();":
-				self.throw(i, message=f"second line must call 'start();'")
+			if i == 1 and line != "epic.start();":
+				self.throw(i, message=f"second line must call 'epic.start();'")
 
 	def checkFStrings(self):
 		for i, line in enumerate(self.content):
@@ -213,19 +213,20 @@ class FileChecker:
 				self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
 
 
-def start():
-	path = inspect.getframeinfo(inspect.currentframe().f_back).filename
+class epic:
+	def start():
+		path = inspect.getframeinfo(inspect.currentframe().f_back).filename
 
-	with open(path, "r") as f:
-		contents = f.read().splitlines();
+		with open(path, "r") as f:
+			contents = f.read().splitlines();
 
-	fc = FileChecker(path, contents)
+		fc = FileChecker(path, contents)
 
-	fc.checkUsage();
-	fc.checkImports();
-	fc.checkSemicolons();
-	fc.blockIllegalMethods();
-	fc.blockIllegalLiterals();
-	fc.checkFStrings();
+		fc.checkUsage();
+		fc.checkImports();
+		fc.checkSemicolons();
+		fc.blockIllegalMethods();
+		fc.blockIllegalLiterals();
+		fc.checkFStrings();
 
 Logger.clearLog();

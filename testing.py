@@ -1,5 +1,5 @@
 from epic import *;
-start();
+epic.start();
 
 coolValue = 1;
 
