@@ -7,12 +7,11 @@ WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. YOU MAY NOT COPY OR REDISTRIBU
 THIS CODE WITHOUT PREMISSION FROM LDM. DO NOT REDISTRIBUTE!
 """
 
-
 coolValue = 1;
 
 #print(f"value is {1+1}");
 #print(String.format("value is %s and then %s. best value is %s", 1+1, 5+3, coolValue));
 
-print("LOL");
+System.out.println("LOL");
 
 #Logger.log("Hello, world!");
