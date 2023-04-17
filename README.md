@@ -7,7 +7,7 @@
 for Python!
 
 # What does it do?
-EPIC for Python! adds a lot of *"amazing"* new syntax enforcements, and some *"quirky"* features! *If you have experience with Java, this will be a **little** easier.* It's the worst of both worlds!
+EPIC for Python! adds a lot of *"amazing"* new syntax enforcements, and some *"quirky"* features! *If you have experience with Java, this will be a **little**  easier.* It's the worst of both worlds!
 
 # How to Use
 Simply install the latest release, then at the top of your Python file, type this:
