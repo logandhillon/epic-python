@@ -1,4 +1,4 @@
-from BetterPython import *;
+from epic import *;
 start();
 
 coolValue = 1;
