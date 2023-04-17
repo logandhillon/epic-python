@@ -171,7 +171,7 @@ class FileChecker:
 			if i == 0 and line != "from epic import *;":
 				self.throw(i, message=f"first line must be 'from epic import *;'")
 
-			if i == 1 and line != "epic.	start();":
+			if i == 1 and line != "epic.start();":
 				self.throw(i, message=f"second line must call 'epic.start();'")
 
 	def checkFStrings(self):

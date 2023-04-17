@@ -1,11 +1,12 @@
+from epic import *;
+epic.start();
+
 """
 Copyright (c) LDM 2023. All rights reserved. THE SOFTWARE IS PROVIDED "AS IS", 
 WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. YOU MAY NOT COPY OR REDISTRIBUTE
 THIS CODE WITHOUT PREMISSION FROM LDM. DO NOT REDISTRIBUTE!
 """
 
-from epic import *;
-epic.start();
 
 coolValue = 1;
 
