@@ -203,7 +203,7 @@ class FileChecker:
 			if line.__contains__("print("):
 				self.throw(i, type="BlacklistedMethodError", message="'print()' is not allowed. did you mean 'System.out.println()'?")
 			if line.__contains__("input("):
-				self.throw(i, type="BlacklistedMethodError", message="'input()' is not allowed. did you mean 'System.stdin.getInput()'?")
+				self.throw(i, type="BlacklistedMethodError", message="'input()' is not allowed. did you mean 'System.stdin.nextLine()'?")
 			if line.__contains__("str("):
 				self.throw(i, type="BlacklistedMethodError", message="'str()' is not allowed. did you mean 'String.valueOf()'?")
 			if line.__contains__("hardLog("):
