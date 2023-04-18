@@ -70,31 +70,49 @@ class System:
 		System.sys.exit(code)
 
 class Logger:
+	class Level(enumerate):
+		SYSTEM = 3;
+		INFO = 2;
+		WARN = 1;
+		ERROR = 0;
+
 	LOG_FILE:str = __file__+".log"
+	__MAX_LEVEL:Level = Level.SYSTEM;
 
 	@staticmethod
-	def log(text: str, type: str = "INFO"):		
-		if type == "WARN":
-			type = f"\u001b[33m{type}  ";
-		elif type == "ERROR":
-			type = f"\u001b[31m{type} ";
-		else:
-			type = f"\u001b[34m{type}  ";
+	def setLevel(level:Level):
+		"""Sets the maximum visible level"""
+		Logger.__MAX_LEVEL = level;
+
+	@staticmethod
+	def log(text: str, type:Level = Level.INFO):
+		if (type > Logger.__MAX_LEVEL):
+			return;	
+		if type == Logger.Level.WARN:
+			type = f"\u001b[33mWARN  ";
+		elif type == Logger.Level.ERROR:
+			type = f"\u001b[31mERROR ";
+		elif type == Logger.Level.INFO:
+			type = f"\u001b[34mINFO  ";
+		elif type == Logger.Level.SYSTEM:
+			type = f"\u001b[38;5;208mSYSTEM";
 		m:str = f'\u001b[1m\u001b[90m{python.util.DateTime.now().strftime("%H:%M:%S")} {type}\u001b[22m\u001b[0m {text}';
 		with open(Logger.LOG_FILE, 'a') as f:
 			System.out.println(m);
 			f.write(StringUtils.removeEscapeCodes(m)+'\n');
 
 	@staticmethod
-	def hardLog(text: str, type: str = "SYSTEM"):		
-		if type == "WARN":
-			type = f"\u001b[33m{type}  ";
-		elif type == "ERROR":
-			type = f"\u001b[31m{type} ";
-		elif type == "SYSTEM":
-			type = f"\u001b[38;5;208m{type}";
-		else:
-			type = f"\u001b[34m{type}  ";
+	def hardLog(text: str, type:Level = Level.SYSTEM):
+		if (type > Logger.__MAX_LEVEL):
+			return;
+		if type == Logger.Level.WARN:
+			type = f"\u001b[33mWARN  ";
+		elif type == Logger.Level.ERROR:
+			type = f"\u001b[31mERROR ";
+		elif type == Logger.Level.INFO:
+			type = f"\u001b[34mINFO  ";
+		elif type == Logger.Level.SYSTEM:
+			type = f"\u001b[38;5;208mSYSTEM";
 		m:str = f'\u001b[1m\u001b[90m{python.util.DateTime.now().strftime("%H:%M:%S")} {type}\u001b[22m\u001b[0m {text}';
 		with open(Logger.LOG_FILE, 'a') as f:
 			print(m);
