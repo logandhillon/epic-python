@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: epic-python
+Version: 0.1.0a0
+Summary: EPIC (Extremely Problematic and Inconventient Code) for Python!
+Author: LDM
+Project-URL: Homepage, https://github.com/LDMGamingYT/epic-python
+Project-URL: Bug Tracker, https://github.com/LDMGamingYT/epic-python/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Free for non-commercial use
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# epic-python
+**E**xtremely<br>
+**P**robelmatic and<br>
+**I**nconvenient<br>
+**C**ode<br>
+
+for Python!
+
+# What does it do?
+EPIC for Python! adds a lot of *"amazing"* new syntax enforcements, and some *"quirky"* features! *If you have experience with Java, this will be a **little**  easier.* It's the worst of both worlds!
+
+# How to Use
+Simply install the latest release, then at the top of your Python file, type this:
+```py
+from epic import *;
+epic.start();
+```
+
+# Current Features
+- Enforce semicolons
+- Block F strings (in favour of `String.format`)
+- Replacement of common Python methods to seem more "Java-y"
+- Replacement of common Python literals to be more like **EVERY OTHER LANGUAGE**
+- A *"much better"* printing system (just try it, it's not that bad 😇)
+- Removal of any sanity the developer may have had before using this! (yes, that's a feature)
