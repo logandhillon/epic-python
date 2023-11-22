@@ -1,12 +1,12 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "epic-python"
 version = "0.1.0-alpha"
 authors = [
-    { name="LDM" }
+    { name="LDM", email="ldmdev64@gmail.com" }
 ]
 description = "EPIC (Extremely Problematic and Inconventient Code) for Python!"
 readme = "README.md"
