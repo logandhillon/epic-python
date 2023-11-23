@@ -160,6 +160,18 @@ class FileChecker:
 
 		System.exit(1);
 	
+	def throwAmbiguously(self, type='SyntaxError', message='invalid syntax'):
+		error_message = f"""
+		  File "{self.file_path}"
+
+		{type}: {message}
+		""";
+
+		error_message = textwrap.dedent(error_message).lstrip('\n');
+		print(error_message, file=System.stderr);
+
+		System.exit(1);
+	
 	def checkSemicolons(self):
 		comment_enabled = 0
 
@@ -265,10 +277,10 @@ class FileChecker:
 					if (isinstance(subnode, ast.FunctionDef) and subnode.name == 'main'):
 						break
 				else:
-					self.throw(0, type="NoSuchMethodError", message="found 'Main' class, expected 'main' method")
+					self.throwAmbiguously(type="NoSuchMethodError", message="found 'Main' class, expected 'main' method")
 				break
 		else:
-			self.throw(0, type="NoSuchMethodError", message="expected 'main' method in 'Main' class")
+			self.throwAmbiguously(type="NoSuchMethodError", message="expected 'main' method in 'Main' class")
 
 		src = type(System.sys)("src")
 		src.__dict__.update(globals())
