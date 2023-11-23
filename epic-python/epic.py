@@ -209,13 +209,13 @@ class FileChecker:
 			if 'as' in line or 'from' in line:
 				self.throw(i, message="'import ... as' or 'from ...' statements are not allowed")
 			if "import os" in line:
-				self.throw(i, type="ImportError", message="'os' is already imported (System.os)")
+				self.throw(i, type="ImportError", message="'os' is already imported (use System.os)")
 			if "import sys" in line:
-				self.throw(i, type="ImportError", message="invalid import 'sys' (did you mean System.sys?)")
+				self.throw(i, type="ImportError", message="'sys' is already imported (use System.sys)")
 			if "import datetime" in line:
-				self.throw(i, type="ImportError", message="'datetime' is already imported (python.util.DateTime)")
+				self.throw(i, type="ImportError", message="'datetime' is already imported (use python.util.DateTime)")
 			if "import re" in line:
-				self.throw(i, type="ImportError", message="'re' is already imported (python.util.RegEx)")
+				self.throw(i, type="ImportError", message="'re' is already imported (use python.util.RegEx)")
 			
 	def blockIllegalMethods(self):
 		for i, line in enumerate(self.content):

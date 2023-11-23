@@ -1,8 +1,8 @@
 from epic import *;
 epic.start();
 
-System.out.println("Script executed!");
+System.sys.stdout.write("Script executed!\n");
 
 class Main:
     def main():
-        System.out.println("Hello from main!");
+        System.sys.stdout.write("Hello from main!\n");
