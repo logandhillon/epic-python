@@ -240,7 +240,15 @@ class FileChecker:
 				self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
 
 	def prepareAndRunFile(self):
-		print("Preparing file")
+		"""
+		Used to change the actual code that is run
+		This allows EPIC to create arbitrary syntax :)
+		"""
+
+		script = '\n'.join(self.content[2:])
+
+		exec(script)
+
 		exit(0)
 
 class epic:
