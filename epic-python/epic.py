@@ -257,28 +257,19 @@ class FileChecker:
 		# exec("Main.main()")
 		# exit(0)
 
-		try:
-			# Parse the script
-			tree = ast.parse(script)
+		tree = ast.parse(script)
 
-			# Iterate through the top-level nodes in the script
-			for node in tree.body:
-				if isinstance(node, ast.ClassDef) and node.name == 'Main':
-					# Check if the 'main' method exists in the 'Main' class
-					for subnode in node.body:
-						if (
-							isinstance(subnode, ast.FunctionDef) and
-							subnode.name == 'main'
-						):
-							print("Main class and 'main' method exist")
-							break
-					else:
-						print("Main class exists, but 'main' method does not")
-					break
-			else:
-				print("Main class does not exist")
-		except SyntaxError:
-			print("Invalid script syntax")
+		for node in tree.body:
+			if isinstance(node, ast.ClassDef) and node.name == 'Main':
+				for subnode in node.body:
+					if (isinstance(subnode, ast.FunctionDef) and subnode.name == 'main'):
+						print("Main class and 'main' method exist")
+						break
+				else:
+					print("Main class exists, but 'main' method does not")
+				break
+		else:
+			print("Main class does not exist")
 
 		exit(0)
 
