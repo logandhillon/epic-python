@@ -270,8 +270,11 @@ class FileChecker:
 		else:
 			self.throw(0, type="NoSuchMethodError", message="expected 'main' method in 'Main' class")
 
-		exec(script)
-		exec("Main.main()")
+		src = type(System.sys)("src")
+		src.__dict__.update(globals())
+
+		exec(script, src.__dict__)
+		#src.Main.main()
 
 		exit(0)
 
