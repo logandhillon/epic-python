@@ -243,6 +243,10 @@ class FileChecker:
 			if line.__contains__("True"): self.throw(i, type="TypeError", message="'True' is not a valid literal. did you mean 'true'?")
 			if line.__contains__("False"): self.throw(i, type="TypeError", message="'False' is not a valid literal. did you mean 'false'?")
 			if line.__contains__("None"): self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
+			if line.__contains__("elif"): self.throw(i, type="TypeError", message="'elif' is not a valid literal. did you mean 'else if'?")
+			if line.__contains__("except"): self.throw(i, type="TypeError", message="'except' is not a valid literal. did you mean 'catch'?")
+			if line.__contains__("raise"): self.throw(i, type="TypeError", message="'raise' is not a valid literal. did you mean 'throw'?")
+			if line.__contains__("def"): self.throw(i, type="TypeError", message="'def' is not a valid literal. did you mean 'fn'?")
 
 	def prepareAndRunFile(self):
 		"""
