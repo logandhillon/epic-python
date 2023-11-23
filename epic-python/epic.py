@@ -232,24 +232,17 @@ class FileChecker:
 	def blockIllegalMethods(self):
 		for i, line in enumerate(self.content):
 			if line.startswith('#'):continue
-			if line.__contains__("print("):
-				self.throw(i, type="BlacklistedMethodError", message="'print()' is not allowed. did you mean 'System.out.println()'?")
-			if line.__contains__("input("):
-				self.throw(i, type="BlacklistedMethodError", message="'input()' is not allowed. did you mean 'System.stdin.nextLine()'?")
-			if line.__contains__("str("):
-				self.throw(i, type="BlacklistedMethodError", message="'str()' is not allowed. did you mean 'String.valueOf()'?")
-			if line.__contains__("hardLog("):
-				self.throw(i, type="BlacklistedMethodError", message="'hardLog()' is not allowed. did you mean 'log()'?")
+			if line.__contains__("print("): self.throw(i, type="BlacklistedMethodError", message="'print()' is not allowed. did you mean 'System.out.println()'?")
+			if line.__contains__("input("): self.throw(i, type="BlacklistedMethodError", message="'input()' is not allowed. did you mean 'System.stdin.nextLine()'?")
+			if line.__contains__("str("): self.throw(i, type="BlacklistedMethodError", message="'str()' is not allowed. did you mean 'String.valueOf()'?")
+			if line.__contains__("hardLog("): self.throw(i, type="BlacklistedMethodError", message="'hardLog()' is not allowed. did you mean 'log()'?")
 
 	def blockIllegalLiterals(self):
 		for i, line in enumerate(self.content):
-			if line.startswith('#'):continue
-			if line.__contains__("True"):
-				self.throw(i, type="TypeError", message="'True' is not a valid literal. did you mean 'true'?")
-			if line.__contains__("False"):
-				self.throw(i, type="TypeError", message="'False' is not a valid literal. did you mean 'false'?")
-			if line.__contains__("None"):
-				self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
+			if line.startswith('#'): continue
+			if line.__contains__("True"): self.throw(i, type="TypeError", message="'True' is not a valid literal. did you mean 'true'?")
+			if line.__contains__("False"): self.throw(i, type="TypeError", message="'False' is not a valid literal. did you mean 'false'?")
+			if line.__contains__("None"): self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
 
 	def prepareAndRunFile(self):
 		"""
