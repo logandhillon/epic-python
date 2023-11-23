@@ -248,6 +248,8 @@ class FileChecker:
 		script = '\n'.join(self.content[2:])
 
 		exec(script)
+
+		exec("main()")
 		exit(0)
 
 class epic:
@@ -264,6 +266,7 @@ class epic:
 		fc.checkSemicolons();
 		fc.blockIllegalMethods();
 		fc.blockIllegalLiterals();
+
 		fc.checkFStrings();
 
 		fc.prepareAndRunFile();
