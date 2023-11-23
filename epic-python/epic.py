@@ -247,8 +247,39 @@ class FileChecker:
 
 		script = '\n'.join(self.content[2:])
 
-		exec(script)
-		exec("Main.main()")
+		# exec(script)
+
+
+		# if not ('Main' in globals() and callable(globals()['Main'].main)):
+		# 	print("Main class does not exist or does not have a 'main' method")
+		# 	exit()			
+
+		# exec("Main.main()")
+		# exit(0)
+
+		try:
+			# Parse the script
+			tree = ast.parse(script)
+
+			# Iterate through the top-level nodes in the script
+			for node in tree.body:
+				if isinstance(node, ast.ClassDef) and node.name == 'Main':
+					# Check if the 'main' method exists in the 'Main' class
+					for subnode in node.body:
+						if (
+							isinstance(subnode, ast.FunctionDef) and
+							subnode.name == 'main'
+						):
+							print("Main class and 'main' method exist")
+							break
+					else:
+						print("Main class exists, but 'main' method does not")
+					break
+			else:
+				print("Main class does not exist")
+		except SyntaxError:
+			print("Invalid script syntax")
+
 		exit(0)
 
 class epic:
