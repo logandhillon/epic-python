@@ -274,7 +274,7 @@ class FileChecker:
 		src.__dict__.update(globals())
 
 		exec(script, src.__dict__)
-		#src.Main.main()
+		src.Main.main()
 
 		exit(0)
 
