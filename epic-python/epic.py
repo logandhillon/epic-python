@@ -12,6 +12,8 @@ void = None;
 import textwrap
 import ast
 import inspect
+import tempfile
+import os
 
 # ahahaha object oriented programming!
 class python:
@@ -158,6 +160,18 @@ class FileChecker:
 
 		System.exit(1);
 	
+	def throwAmbiguously(self, type='SyntaxError', message='invalid syntax'):
+		error_message = f"""
+		  File "{self.file_path}"
+
+		{type}: {message}
+		""";
+
+		error_message = textwrap.dedent(error_message).lstrip('\n');
+		print(error_message, file=System.stderr);
+
+		System.exit(1);
+	
 	def checkSemicolons(self):
 		comment_enabled = 0
 
@@ -207,13 +221,13 @@ class FileChecker:
 			if 'as' in line or 'from' in line:
 				self.throw(i, message="'import ... as' or 'from ...' statements are not allowed")
 			if "import os" in line:
-				self.throw(i, type="ImportError", message="'os' is already imported (System.os)")
+				self.throw(i, type="ImportError", message="'os' is already imported (use System.os)")
 			if "import sys" in line:
-				self.throw(i, type="ImportError", message="invalid import 'sys' (did you mean System.sys?)")
+				self.throw(i, type="ImportError", message="'sys' is already imported (use System.sys)")
 			if "import datetime" in line:
-				self.throw(i, type="ImportError", message="'datetime' is already imported (python.util.DateTime)")
+				self.throw(i, type="ImportError", message="'datetime' is already imported (use python.util.DateTime)")
 			if "import re" in line:
-				self.throw(i, type="ImportError", message="'re' is already imported (python.util.RegEx)")
+				self.throw(i, type="ImportError", message="'re' is already imported (use python.util.RegEx)")
 			
 	def blockIllegalMethods(self):
 		for i, line in enumerate(self.content):
@@ -237,6 +251,44 @@ class FileChecker:
 			if line.__contains__("None"):
 				self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
 
+	def prepareAndRunFile(self):
+		"""
+		Used to change the actual code that is run
+		This allows EPIC to create arbitrary syntax :)
+		"""
+
+		script = '\n'.join(self.content[2:])
+
+		# exec(script)
+
+
+		# if not ('Main' in globals() and callable(globals()['Main'].main)):
+		# 	print("Main class does not exist or does not have a 'main' method")
+		# 	exit()			
+
+		# exec("Main.main()")
+		# exit(0)
+
+		tree = ast.parse(script)
+
+		for node in tree.body:
+			if isinstance(node, ast.ClassDef) and node.name == 'Main':
+				for subnode in node.body:
+					if (isinstance(subnode, ast.FunctionDef) and subnode.name == 'main'):
+						break
+				else:
+					self.throwAmbiguously(type="NoSuchMethodError", message="found 'Main' class, expected 'main' method")
+				break
+		else:
+			self.throwAmbiguously(type="NoSuchMethodError", message="expected 'main' method in 'Main' class")
+
+		src = type(System.sys)("src")
+		src.__dict__.update(globals())
+
+		exec(script, src.__dict__)
+		src.Main.main()
+
+		exit(0)
 
 class epic:
 	def start():
@@ -252,6 +304,9 @@ class epic:
 		fc.checkSemicolons();
 		fc.blockIllegalMethods();
 		fc.blockIllegalLiterals();
+
 		fc.checkFStrings();
+
+		fc.prepareAndRunFile();
 
 Logger.clearLog();
