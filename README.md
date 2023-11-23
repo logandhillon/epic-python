@@ -1,4 +1,4 @@
-# epic-python
+# EPIC-Python
 **E**xtremely<br>
 **P**robelmatic and<br>
 **I**nconvenient<br>
@@ -6,17 +6,17 @@
 
 for Python!
 
-# What does it do?
+## What does it do?
 EPIC for Python! adds a lot of *"amazing"* new syntax enforcements, and some *"quirky"* features! *If you have experience with Java, this will be a **little**  easier.* It's the worst of both worlds!
 
-# How to Use
+## How to Use
 Simply install the latest release (or download epic.py straight from the source, if you're feeling risky), then at the top of your Python file, type this:
 ```py
 from epic import *;
 epic.start();
 ```
 
-# Current Features
+## Current Features
 - Enforce semicolons
 - Block F strings (in favour of `String.format`)
 - Replacement of common Python methods to seem more "Java-y"
