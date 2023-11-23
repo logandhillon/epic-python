@@ -248,8 +248,7 @@ class FileChecker:
 		script = '\n'.join(self.content[2:])
 
 		exec(script)
-
-		exec("main()")
+		exec("Main.main()")
 		exit(0)
 
 class epic:
