@@ -263,13 +263,15 @@ class FileChecker:
 			if isinstance(node, ast.ClassDef) and node.name == 'Main':
 				for subnode in node.body:
 					if (isinstance(subnode, ast.FunctionDef) and subnode.name == 'main'):
-						print("Main class and 'main' method exist")
 						break
 				else:
-					print("Main class exists, but 'main' method does not")
+					self.throw(0, type="NoSuchMethodError", message="found 'Main' class, expected 'main' method")
 				break
 		else:
-			print("Main class does not exist")
+			self.throw(0, type="NoSuchMethodError", message="expected 'main' method in 'Main' class")
+
+		exec(script)
+		exec("Main.main()")
 
 		exit(0)
 
