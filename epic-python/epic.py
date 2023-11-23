@@ -12,6 +12,8 @@ void = None;
 import textwrap
 import ast
 import inspect
+import tempfile
+import os
 
 # ahahaha object oriented programming!
 class python:
@@ -237,6 +239,9 @@ class FileChecker:
 			if line.__contains__("None"):
 				self.throw(i, type="TypeError", message="'None' is not a valid literal. did you mean 'null'?")
 
+	def prepareAndRunFile(self):
+		print("Preparing file")
+		exit(0)
 
 class epic:
 	def start():
@@ -253,5 +258,7 @@ class epic:
 		fc.blockIllegalMethods();
 		fc.blockIllegalLiterals();
 		fc.checkFStrings();
+
+		fc.prepareAndRunFile();
 
 Logger.clearLog();
