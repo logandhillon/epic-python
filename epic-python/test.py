@@ -1,4 +1,4 @@
 from epic import *;
 epic.start();
 
-System.out.println("hei");
+System.out.println("Hello!");
